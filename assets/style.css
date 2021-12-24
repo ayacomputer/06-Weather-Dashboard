@@ -11,11 +11,15 @@
     background-color: var(--primeColor);
     color: var(--darkColor);
   }
+  html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
 
 body {
     font-family: 'Nunito','Outfit', sans-serif;
-    font-size: 16px;
-    line-height: 1;
+    font-size: 1.75rem;
+    line-height: 1.5;
     background-color: var(--darkColor);
     color: var(--lightColor);
     text-align: center;
