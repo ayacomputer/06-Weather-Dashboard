@@ -4,7 +4,10 @@
     --primeColor: rgb(31, 110, 110);
     --secondColor:rgba(175, 59, 59, 0.945);
     --thirdColor: rgba(78, 78, 73, 0.87);
-    --fourthColor: ;
+    --fourthColor: rgba(59, 76, 175, 0.945);
+    --dashedBorder: dashed 2px var(--lightColor);
+    --solidBorder: solid 1px var(--lightColor);
+    --borderRadius: 1rem;
    }
 
    ::selection {
@@ -28,4 +31,52 @@ body {
   main {
       display: flex;
       flex-direction: row;
+  }
+
+  h1 {
+      font-size: 4rem;
+      padding: 5rem 3rem 2rem 3rem;
+  }
+
+  .left {
+   
+    display: flex;
+    width:30%;
+    flex-direction: column;
+     margin: 0;
+     padding: 3em;
+     
+  }
+  .right {
+      display: flex;
+      width:70%;
+      flex-direction: column;
+      margin: 0;
+      padding: 3em;
+  }
+  
+#cityInfo {
+    margin:0;
+    display: flex;
+    flex-direction: column;
+    border: var(--dashedBorder);
+    border-radius: var(--borderRadius);
+}
+#fiveDayForecast {
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    border-radius: var(--borderRadius);
+  }
+
+
+
+
+  #contact, #mycontact {
+    font-size:0.8rem;
+      text-align: center;
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+   text-decoration: none;
+    color: var(--lightColor);
   }
