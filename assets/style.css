@@ -46,9 +46,10 @@ body {
     width:30%;
     flex-direction: column;
      margin: 0;
-     padding: 3em;
+     padding: 1em;
      
   }
+
 
   .textInput {
     margin-top: 1rem;
