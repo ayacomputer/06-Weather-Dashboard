@@ -6,9 +6,12 @@ const searchedCities = document.getElementById("searchedCities");
 const currentWeatherContainer = document.getElementById("cityCondition");
 
 var userInputArr = JSON.parse(localStorage.getItem("savedCities")) || [];
+const apiKey = "247cadaeeb389932e726ca1f84c7875d";
 
 
 displayRecentSearches();
+getCurrentWeather("Melbourne");
+// last value from the array 
 
 
 searchBtn.addEventListener("click", function (event) {
@@ -20,7 +23,7 @@ searchBtn.addEventListener("click", function (event) {
         return;
     } else if (searchInput.value) {
         saveRecentSearches();
-        getCurrentWeather();
+        getCurrentWeather(searchInput.value);
     }
     searchInput.value = " ";
 
@@ -56,20 +59,24 @@ function displayRecentSearches() {
     })
 }
 
-const cityName = searchInput.textContent;
-const apiKey = "97f07c142393e325b412688726de1147";
 
 
 
-function getCurrentWeather() {
-    let searchUrl = `https://openweathermap.org/data/2.5/weather?q="${cityName}&units=metric&appid=${apiKey}`;
+function getCurrentWeather(cityName) {
+    console.log(cityName);
+    let searchUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`;
+
     fetch(searchUrl).then(function (response) {
-        response.json();
+        return response.json();
+    }).then(function (data) {
+        currentWeatherContainer.innerHTML = " ";
+        console.log(data);
+        const cityNameEl = document.createElement("p");
+        cityNameEl.textContent = cityName;
+        currentWeatherContainer.appendChild(cityNameEl);
 
         const temperatureEl = document.createElement("h1");
-        temperatureEl.textContent = `${Math.round(data.current.temp)}°C`;
-
+        temperatureEl.textContent = `${Math.round(data.main.temp)}°C`;
         currentWeatherContainer.appendChild(temperatureEl);
-
-    })
+    });
 }
