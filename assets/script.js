@@ -8,7 +8,7 @@ const currentWeatherContainer = document.getElementById("cityCondition");
 var userInputArr = JSON.parse(localStorage.getItem("savedCities")) || [];
 
 
-
+displayRecentSearches();
 
 
 searchBtn.addEventListener("click", function (event) {
@@ -22,26 +22,27 @@ searchBtn.addEventListener("click", function (event) {
         saveRecentSearches();
         getCurrentWeather();
     }
+    searchInput.value = " ";
 
 });
 
 
 clearBtn.addEventListener("click", function () {
     localStorage.removeItem("savedCities");
-    searchedCities.innerText = ' ';
+    searchedCities.innerText = " ";
 
 });
 
 
 function saveRecentSearches() {
     var userSearchInput = searchInput.value;
-    userInputArr.push(userSearchInput);
+    userInputArr.unshift(userSearchInput);
     localStorage.setItem("savedCities", JSON.stringify(userInputArr));
-    userInputArr.reverse();
     displayRecentSearches();
 }
 
 function displayRecentSearches() {
+    searchedCities.innerHTML = " ";
 
     userInputArr.forEach(function (item, index) {
         if (index < 5) {
@@ -62,9 +63,7 @@ const apiKey = "97f07c142393e325b412688726de1147";
 
 function getCurrentWeather() {
     let searchUrl = `https://openweathermap.org/data/2.5/weather?q="${cityName}&units=metric&appid=${apiKey}`;
-    fetch(searchUrl, {
-        cache: "reload",
-    }).then(function (response) {
+    fetch(searchUrl).then(function (response) {
         response.json();
 
         const temperatureEl = document.createElement("h1");
