@@ -50,6 +50,11 @@ body {
      
   }
 
+   #searchedCities {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+   }
 
   .textInput {
     margin-top: 1rem;

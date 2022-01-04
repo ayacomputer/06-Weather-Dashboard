@@ -11,11 +11,13 @@ const apiKey = "97f07c142393e325b412688726de1147";
 
 searchBtn.addEventListener("click", function (event) {
     event.preventDefault();
-    saveRecentSearches();
     console.log(searchInput.value);
+
     if (searchInput.value === '') {
         alert('Please Enter a City.');
         return;
+    } else if (searchInput.value) {
+        saveRecentSearches();
     }
 
 });
@@ -32,5 +34,18 @@ function saveRecentSearches() {
     var userSearchInput = searchInput.value;
     userInputArr.push(userSearchInput);
     localStorage.setItem("savedCities", JSON.stringify(userInputArr));
+
+    userInputArr.reverse();
+
+    userInputArr.forEach(function (item, index) {
+        if (index < 5) {
+            const cityBtn = document.createElement("button");
+            cityBtn.textContent = item;
+            cityBtn.setAttribute("text-transform", "capitalize");
+            cityBtn.setAttribute("class", "btn");
+            searchedCities.appendChild(cityBtn);
+
+        }
+    })
 
 }
