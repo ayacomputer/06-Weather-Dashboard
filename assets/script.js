@@ -74,18 +74,17 @@ function getCurrentWeather(cityName) {
     console.log(cityName);
     let searchUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`;
 
-    fetch(searchUrl).then(function (response) {
-        return response.json();
-    }).then(function (data) {
-        currentWeatherContainer.innerHTML = " ";
-        console.log(data);
-        const cityNameEl = document.createElement("p");
-        cityNameEl.textContent = cityName;
-        currentWeatherContainer.appendChild(cityNameEl);
+    fetch(searchUrl).then((response) => response.json())
+        .then((data) => {
+            currentWeatherContainer.innerHTML = " ";
+            console.log(data);
+            const cityNameEl = document.createElement("p");
+            cityNameEl.textContent = cityName;
+            currentWeatherContainer.appendChild(cityNameEl);
 
-        const temperatureEl = document.createElement("h1");
-        temperatureEl.textContent = `${Math.round(data.main.temp)}°C`;
-        currentWeatherContainer.appendChild(temperatureEl);
-    }).catch();
+            const temperatureEl = document.createElement("h2");
+            temperatureEl.textContent = `${Math.round(data.main.temp)}°C`;
+            currentWeatherContainer.appendChild(temperatureEl);
+        }).catch(error => console.log(error));
 
 }
