@@ -36,9 +36,13 @@ body {
   }
 
   h1 {
-      margin: 0;
+      margin:0;
       font-size: 4rem;
       padding: 5rem 3rem 2rem 3rem;
+  }
+
+  h2 {
+    margin: 0.5rem 0;
   }
 
   .left {
@@ -102,10 +106,11 @@ body {
       width:70%;
       flex-direction: column;
       margin: 0;
-      padding: 3em;
+      padding: 0 3em;
   }
   
 #cityInfo {
+    padding: 0 3em 3em 3em;
     margin:0;
     display: flex;
     flex-direction: column;
@@ -113,16 +118,18 @@ body {
     border-radius: var(--borderRadius);
 }
 
+
 #weatherIcon {
   margin: 0 auto;
   height: 10rem;
   width: 10rem;
 }
-legend, fieldset {
+legend {
   padding: 2rem;
 }
+
 span {
-  margin: 4rem;
+  justify-content: space-around;
 }
 #fiveDayForecast {
     margin: 0;

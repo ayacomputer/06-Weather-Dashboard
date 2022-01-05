@@ -5,19 +5,18 @@ const clearBtn = document.getElementById("clearBtn");
 const searchInput = document.getElementById("searchInput");
 const searchedCities = document.getElementById("searchedCities");
 
+const currentWeatherContainer = document.getElementById("cityCondition");
+const pickedCity = document.getElementById("pickedCity");
+const weatherIcon = document.getElementById("weatherIcon");
 
 const today = document.getElementById("today");
 var now = moment();
 today.textContent = now.format("dddd, Do MMM, YYYY");
 
-const currentWeatherContainer = document.getElementById("cityCondition");
-const pickedCity = document.getElementById("pickedCity");
-const weatherIcon = document.getElementById("weatherIcon");
 
 var userInputArr = JSON.parse(localStorage.getItem("savedCities")) || [];
 var storageCities = JSON.parse(localStorage.getItem("savedCities") || "[]");
 var lastSearchedCity = storageCities.at(-1) || "Melbourne";
-
 console.log("storageCities", storageCities);
 console.log("lastSearchedCity", lastSearchedCity);
 
@@ -101,7 +100,7 @@ function getCurrentWeather(cityName) {
             const otherInfoDiv = document.createElement("div");
             otherInfoDiv.setAttribute("display", "flex")
             otherInfoDiv.setAttribute("flex-direction", "row")
-            otherInfoDiv.setAttribute("justify-content", "space-around")
+            otherInfoDiv.setAttribute("flex-wrap", "wrap")
 
             const windEl = document.createElement("span");
             windEl.textContent = `Wind: ${Math.round(data.wind.deg)}MPH`;
