@@ -34,10 +34,12 @@
         </aside>
 
         <section class="right">
-            <div id="cityInfo">
-                <h2 id="pickedCity"></h2><span id="weatherIcon"></span>
+            <fieldset id="cityInfo">
+                <legend id="today"></legend>
+                <h2 id="pickedCity"></h2>
+                <img src="" alt="Weather icon" id="weatherIcon">
                 <div id="cityCondition"></div>
-            </div>
+            </fieldset>
 
             <fieldset id="fiveDayForecast">
                 <legend>5-Day Forecast</legend>
@@ -51,7 +53,7 @@
         </section>
 
     </main>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./assets/script.js"></script>
 </body>
 <footer>

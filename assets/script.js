@@ -1,19 +1,29 @@
+const apiKey = "247cadaeeb389932e726ca1f84c7875d";
+
 const searchBtn = document.getElementById("searchBtn");
 const clearBtn = document.getElementById("clearBtn");
 const searchInput = document.getElementById("searchInput");
 const searchedCities = document.getElementById("searchedCities");
 
+
+const today = document.getElementById("today");
+var now = moment();
+today.textContent = now.format("dddd, Do MMM, YYYY");
+
 const currentWeatherContainer = document.getElementById("cityCondition");
+const pickedCity = document.getElementById("pickedCity");
+const weatherIcon = document.getElementById("weatherIcon");
 
 var userInputArr = JSON.parse(localStorage.getItem("savedCities")) || [];
-
 var storageCities = JSON.parse(localStorage.getItem("savedCities") || "[]");
 var lastSearchedCity = storageCities.at(-1) || "Melbourne";
 
 console.log("storageCities", storageCities);
 console.log("lastSearchedCity", lastSearchedCity);
 
-const apiKey = "247cadaeeb389932e726ca1f84c7875d";
+
+
+
 
 
 displayRecentSearches();
@@ -78,13 +88,42 @@ function getCurrentWeather(cityName) {
         .then((data) => {
             currentWeatherContainer.innerHTML = " ";
             console.log(data);
-            const cityNameEl = document.createElement("p");
-            cityNameEl.textContent = cityName;
-            currentWeatherContainer.appendChild(cityNameEl);
+            pickedCity.textContent = cityName;
+
+            const iconId = data.weather[0].icon
+            weatherIcon.setAttribute("src", `http://openweathermap.org/img/wn/${iconId}@2x.png`)
+
 
             const temperatureEl = document.createElement("h2");
             temperatureEl.textContent = `${Math.round(data.main.temp)}°C`;
             currentWeatherContainer.appendChild(temperatureEl);
+
+            const otherInfoDiv = document.createElement("div");
+            otherInfoDiv.setAttribute("display", "flex")
+            otherInfoDiv.setAttribute("flex-direction", "row")
+            otherInfoDiv.setAttribute("justify-content", "space-around")
+
+            const windEl = document.createElement("span");
+            windEl.textContent = `Wind: ${Math.round(data.wind.deg)}MPH`;
+            otherInfoDiv.appendChild(windEl);
+
+            const humidityEl = document.createElement("span");
+            humidityEl.textContent = `Humidity: ${Math.round(data.main.humidity)}%`;
+            otherInfoDiv.appendChild(humidityEl);
+
+            const uvEl = document.createElement("span");
+            uvEl.textContent = `UV: ${Math.round(data.main.temp)}`;
+            otherInfoDiv.appendChild(uvEl);
+
+
+            currentWeatherContainer.appendChild(otherInfoDiv);
+
+
+
+
+
+
+
         }).catch(error => console.log(error));
 
 }

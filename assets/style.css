@@ -112,6 +112,18 @@ body {
     border: var(--dashedBorder);
     border-radius: var(--borderRadius);
 }
+
+#weatherIcon {
+  margin: 0 auto;
+  height: 10rem;
+  width: 10rem;
+}
+legend, fieldset {
+  padding: 2rem;
+}
+span {
+  margin: 4rem;
+}
 #fiveDayForecast {
     margin: 0;
     display: flex;
