@@ -6,12 +6,19 @@ const searchedCities = document.getElementById("searchedCities");
 const currentWeatherContainer = document.getElementById("cityCondition");
 
 var userInputArr = JSON.parse(localStorage.getItem("savedCities")) || [];
+
+var storageCities = JSON.parse(localStorage.getItem("savedCities") || "[]");
+var lastSearchedCity = storageCities.at(-1) || "Melbourne";
+
+console.log("storageCities", storageCities);
+console.log("lastSearchedCity", lastSearchedCity);
+
 const apiKey = "247cadaeeb389932e726ca1f84c7875d";
 
 
 displayRecentSearches();
-getCurrentWeather("Melbourne");
-// last value from the array 
+getCurrentWeather(lastSearchedCity);
+
 
 
 searchBtn.addEventListener("click", function (event) {
@@ -25,27 +32,28 @@ searchBtn.addEventListener("click", function (event) {
         saveRecentSearches();
         getCurrentWeather(searchInput.value);
     }
-    searchInput.value = " ";
+    searchInput.value = "";
 
 });
 
 
 clearBtn.addEventListener("click", function () {
+    userInputArr = [];
     localStorage.removeItem("savedCities");
-    searchedCities.innerText = " ";
+    searchedCities.innerText = "";
 
 });
 
 
 function saveRecentSearches() {
     var userSearchInput = searchInput.value;
-    userInputArr.unshift(userSearchInput);
+    userInputArr.push(userSearchInput);
     localStorage.setItem("savedCities", JSON.stringify(userInputArr));
     displayRecentSearches();
 }
 
 function displayRecentSearches() {
-    searchedCities.innerHTML = " ";
+    searchedCities.innerHTML = "";
 
     userInputArr.forEach(function (item, index) {
         if (index < 5) {
@@ -78,5 +86,6 @@ function getCurrentWeather(cityName) {
         const temperatureEl = document.createElement("h1");
         temperatureEl.textContent = `${Math.round(data.main.temp)}°C`;
         currentWeatherContainer.appendChild(temperatureEl);
-    });
+    }).catch();
+
 }

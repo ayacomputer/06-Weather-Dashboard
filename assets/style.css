@@ -52,7 +52,7 @@ body {
 
    #searchedCities {
      display: flex;
-     flex-direction: column;
+     flex-direction: column-reverse;
      justify-content: center;
    }
 
