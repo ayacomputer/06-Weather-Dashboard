@@ -106,11 +106,11 @@ body {
       width:70%;
       flex-direction: column;
       margin: 0;
-      padding: 0 3em;
+      padding: 0 4em;
   }
   
 #cityInfo {
-    padding: 0 3em 3em 3em;
+    padding: 0 3em 2em 3em;
     margin:0;
     display: flex;
     flex-direction: column;
@@ -130,6 +130,7 @@ legend {
 
 span {
   justify-content: space-around;
+  margin: 1rem;
 }
 #fiveDayForecast {
     margin: 0;
