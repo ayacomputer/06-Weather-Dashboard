@@ -145,13 +145,16 @@ function getFiveWeather(lat, lon) {
                 divEl.setAttribute("flex-direction", "column");
 
 
-                let dayEl = document.createElement("p");
-                let iconEl = document.createElement("img");
-                let tempEl = document.createElement("p");
-                let windEl = document.createElement("p");
-                let humidEl = document.createElement("p");
+                const dayEl = document.createElement("p");
+                const iconEl = document.createElement("img");
+                const tempEl = document.createElement("p");
+                const windEl = document.createElement("p");
+                const humidEl = document.createElement("p");
 
-                dayEl.textContent = data.daily[i].weather.dt;
+                const dayDt = data.daily[i].dt;
+                console.log(dayDt);
+                dayEl.textContent = new Date(dayDt * 1000).toLocaleString("en-US", { weekday: "long" });
+
                 tempEl.textContent = `${Math.round(data.daily[i].temp.day)}°C`
                 windEl.textContent = `${data.daily[i].wind_speed}MPH`
                 humidEl.textContent = `${data.daily[i].humidity}%`
