@@ -113,7 +113,7 @@ function getCurrentWeather(cityName) {
             otherInfoDiv.setAttribute("flex-wrap", "wrap")
 
             const windEl = document.createElement("span");
-            windEl.textContent = `Wind: ${data.wind.speed}MPH`;
+            windEl.textContent = `Wind: ${Math.round(data.wind.speed * 3.6)}km/h`;
             otherInfoDiv.appendChild(windEl);
 
             const humidityEl = document.createElement("span");
@@ -162,7 +162,7 @@ function getFiveWeather(lat, lon) {
                 dayEl.textContent = new Date(dayDt * 1000).toLocaleString("en-AU", { weekday: 'long', day: 'numeric' });
 
                 tempEl.textContent = `${Math.round(data.daily[i].temp.day)}°C`
-                windEl.textContent = `${data.daily[i].wind_speed}MPH`
+                windEl.textContent = `${Math.round(data.daily[i].wind_speed)}km/h`
                 humidEl.textContent = `${data.daily[i].humidity}%`
 
                 const iconId = data.daily[i].weather[0].icon
