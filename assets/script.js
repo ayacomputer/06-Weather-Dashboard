@@ -8,6 +8,7 @@ const searchedCities = document.getElementById("searchedCities");
 const currentWeatherContainer = document.getElementById("cityCondition");
 const pickedCity = document.getElementById("pickedCity");
 const weatherIcon = document.getElementById("weatherIcon");
+const forecastContainer = document.getElementById("forecastContainer")
 
 const today = document.getElementById("today");
 var now = moment();
@@ -16,7 +17,7 @@ today.textContent = now.format("dddd, Do MMM, YYYY");
 
 var userInputArr = JSON.parse(localStorage.getItem("savedCities")) || [];
 var storageCities = JSON.parse(localStorage.getItem("savedCities") || "[]");
-var lastSearchedCity = storageCities.at(-1) || "Melbourne";
+var lastSearchedCity = storageCities.at(-1) || "St Kilda";
 console.log("storageCities", storageCities);
 console.log("lastSearchedCity", lastSearchedCity);
 
@@ -131,13 +132,49 @@ function getCurrentWeather(cityName) {
 
 function getFiveWeather(lat, lon) {
     console.log(`lat: ${lat} lon: ${lon}`);
-    let searchUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${apiKey}`;
+    let searchUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&units=metric&appid=${apiKey}`;
     fetch(searchUrl).then((response) => response.json())
         .then((data) => {
             console.log(data)
+            forecastContainer.innerHTML = "";
             getCurrentUV(data);
 
+            for (let i = 1; i < 6; i++) {
+                let divEl = document.createElement("div");
+                divEl.setAttribute("display", "flex");
+                divEl.setAttribute("flex-direction", "column");
 
+
+                let dayEl = document.createElement("p");
+                let iconEl = document.createElement("img");
+                let tempEl = document.createElement("p");
+                let windEl = document.createElement("p");
+                let humidEl = document.createElement("p");
+
+                dayEl.textContent = data.daily[i].weather.dt;
+                tempEl.textContent = `${Math.round(data.daily[i].temp.day)}°C`
+                windEl.textContent = `${Math.round(data.daily[i].wind_speed)}MPH`
+                humidEl.textContent = `${Math.round(data.daily[i].humidity)}%`
+
+                const iconId = data.daily[i].weather[0].icon
+                iconEl.setAttribute("src", `http://openweathermap.org/img/wn/${iconId}@2x.png`)
+
+
+
+                divEl.appendChild(dayEl);
+                divEl.appendChild(iconEl);
+                divEl.appendChild(tempEl);
+                divEl.appendChild(windEl);
+                divEl.appendChild(humidEl);
+
+
+
+                forecastContainer.appendChild(divEl)
+
+
+
+
+            }
 
         })
 }
@@ -149,6 +186,7 @@ function getCurrentUV(data) {
     const currentUV = data.current.uvi;
     uvEl.textContent = `UV: ${currentUV}`;
     currentWeatherContainer.appendChild(uvEl);
+
     if (currentUV < 3) {
         uvEl.classList.add("uv-low");
     } else if (currentUV >= 3 && currentUV < 6) {

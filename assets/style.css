@@ -132,11 +132,16 @@ span {
   justify-content: space-around;
   margin: 1rem;
 }
-#fiveDayForecast {
+#fiveDayFieldset {
+  margin: 0;
+  border-radius: var(--borderRadius);
+}
+#forecastContainer {
     margin: 0;
     display: flex;
     flex-direction: row;
-    border-radius: var(--borderRadius);
+    justify-content: space-around;
+   
   }
 
 
@@ -178,6 +183,12 @@ span {
   border-radius: 1em;
   width:30%;
   margin: 0 auto;
+}
+
+#forecastContainer div img {
+  margin: 0 auto;
+  height: 8rem;
+  width: 8rem;
 }
 
   #contact, #mycontact {
