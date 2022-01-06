@@ -140,7 +140,45 @@ span {
   }
 
 
+.uv-low {
+  background-color:rgb(108, 160, 95);
+  padding: 0.3em;
+  border-radius: 1em;
+  width:30%;
+  margin: 0 auto;
+}
 
+.uv-moderate {
+  background-color:rgba(197, 199, 68, 0.952);
+  padding: 0.3em;
+  border-radius: 1em;
+  width:30%;
+  margin: 0 auto;
+}
+
+.uv-high {
+  background-color:rgb(207, 155, 76);
+  padding: 0.3em;
+  border-radius: 1em;
+  width:30%;
+  margin: 0 auto;
+}
+
+.uv-veryHigh {
+  background-color:rgb(160, 95, 100);
+  padding: 0.3em;
+  border-radius: 1em;
+  width:30%;
+  margin: 0 auto;
+}
+
+.uv-extreme {
+  background-color:rgb(95, 96, 160);
+  padding: 0.3em;
+  border-radius: 1em;
+  width:30%;
+  margin: 0 auto;
+}
 
   #contact, #mycontact {
     font-size:0.8rem;

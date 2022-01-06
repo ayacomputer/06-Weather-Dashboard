@@ -23,8 +23,6 @@ console.log("lastSearchedCity", lastSearchedCity);
 
 
 
-
-
 displayRecentSearches();
 getCurrentWeather(lastSearchedCity);
 
@@ -63,18 +61,17 @@ function saveRecentSearches() {
 
 function displayRecentSearches() {
     searchedCities.innerHTML = "";
+    const recentFiveSearch = userInputArr.slice(-5);
+    recentFiveSearch.forEach(function (item) {
+        const cityBtn = document.createElement("button");
+        cityBtn.textContent = item;
+        cityBtn.style.textTransform = "capitalize";
+        cityBtn.setAttribute("class", "btn");
+        searchedCities.appendChild(cityBtn);
 
-    userInputArr.forEach(function (item, index) {
-        if (index < 5) {
-            const cityBtn = document.createElement("button");
-            cityBtn.textContent = item;
-            cityBtn.style.textTransform = "capitalize";
-            cityBtn.setAttribute("class", "btn");
-            searchedCities.appendChild(cityBtn);
-
-        }
     })
 }
+
 
 
 
@@ -88,6 +85,12 @@ function getCurrentWeather(cityName) {
             currentWeatherContainer.innerHTML = " ";
             console.log(data);
             pickedCity.textContent = cityName;
+            pickedCity.style.textTransform = "capitalize";
+
+            const lat = data.coord.lat
+            const lon = data.coord.lon
+
+            getFiveWeather(lat, lon);
 
             const iconId = data.weather[0].icon
             weatherIcon.setAttribute("src", `http://openweathermap.org/img/wn/${iconId}@2x.png`)
@@ -110,9 +113,7 @@ function getCurrentWeather(cityName) {
             humidityEl.textContent = `Humidity: ${Math.round(data.main.humidity)}%`;
             otherInfoDiv.appendChild(humidityEl);
 
-            const uvEl = document.createElement("span");
-            uvEl.textContent = `UV: ${Math.round(data.main.temp)}`;
-            otherInfoDiv.appendChild(uvEl);
+
 
 
             currentWeatherContainer.appendChild(otherInfoDiv);
@@ -120,9 +121,44 @@ function getCurrentWeather(cityName) {
 
 
 
-
-
-
         }).catch(error => console.log(error));
 
+}
+
+
+
+
+
+function getFiveWeather(lat, lon) {
+    console.log(`lat: ${lat} lon: ${lon}`);
+    let searchUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${apiKey}`;
+    fetch(searchUrl).then((response) => response.json())
+        .then((data) => {
+            console.log(data)
+            getCurrentUV(data);
+
+
+
+        })
+}
+
+
+function getCurrentUV(data) {
+    console.log(data)
+    const uvEl = document.createElement("p");
+    const currentUV = data.current.uvi;
+    uvEl.textContent = `UV: ${currentUV}`;
+    currentWeatherContainer.appendChild(uvEl);
+    if (currentUV < 3) {
+        uvEl.classList.add("uv-low");
+    } else if (currentUV >= 3 && currentUV < 6) {
+        uvEl.classList.add("uv-moderate");
+    } else if (currentUV >= 6 && currentUV < 8) {
+        uvEl.classList.add("uv-high");
+    }
+    else if (currentUV >= 8 && currentUV < 11) {
+        uvEl.classList.add("uv-veryHigh");
+    } else {
+        uvEl.classList.add("uv-extreme");
+    }
 }
