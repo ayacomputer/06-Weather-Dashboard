@@ -153,7 +153,7 @@ function getFiveWeather(lat, lon) {
 
                 const dayDt = data.daily[i].dt;
                 console.log(dayDt);
-                dayEl.textContent = new Date(dayDt * 1000).toLocaleString("en-US", { weekday: "long" });
+                dayEl.textContent = new Date(dayDt * 1000).toLocaleString("en-AU", { weekday: 'long', day: 'numeric' });
 
                 tempEl.textContent = `${Math.round(data.daily[i].temp.day)}°C`
                 windEl.textContent = `${data.daily[i].wind_speed}MPH`
