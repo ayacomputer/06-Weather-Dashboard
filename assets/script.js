@@ -70,6 +70,12 @@ function displayRecentSearches() {
         cityBtn.setAttribute("class", "btn");
         searchedCities.appendChild(cityBtn);
 
+        cityBtn.addEventListener("click", function (event) {
+            console.log(event.target.textContent);
+            const clickedCity = event.target.textContent;
+            getCurrentWeather(clickedCity);
+        })
+
     })
 }
 
