@@ -33,7 +33,7 @@ searchBtn.addEventListener("click", function (event) {
     event.preventDefault();
     console.log(searchInput.value);
 
-    if (searchInput.value === '') {
+    if (searchInput.value === '' || !isNaN(searchInput.value)) {
         alert('Please Enter a City.');
         return;
     } else if (searchInput.value) {
@@ -139,7 +139,7 @@ function getFiveWeather(lat, lon) {
             forecastContainer.innerHTML = "";
             getCurrentUV(data);
 
-            for (let i = 1; i < 6; i++) {
+            for (let i = 0; i < 5; i++) {
                 let divEl = document.createElement("div");
                 divEl.setAttribute("display", "flex");
                 divEl.setAttribute("flex-direction", "column");
