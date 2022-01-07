@@ -5,6 +5,7 @@ const clearBtn = document.getElementById("clearBtn");
 const searchInput = document.getElementById("searchInput");
 const searchedCities = document.getElementById("searchedCities");
 
+
 const currentWeatherContainer = document.getElementById("cityCondition");
 const pickedCity = document.getElementById("pickedCity");
 const weatherIcon = document.getElementById("weatherIcon");
@@ -17,7 +18,7 @@ today.textContent = now.format("dddd, Do MMM, YYYY");
 
 var userInputArr = JSON.parse(localStorage.getItem("savedCities")) || [];
 var storageCities = JSON.parse(localStorage.getItem("savedCities") || "[]");
-var lastSearchedCity = storageCities.at(-1) || "St Kilda";
+var lastSearchedCity = storageCities.at(-1) || "Tokyo";
 console.log("storageCities", storageCities);
 console.log("lastSearchedCity", lastSearchedCity);
 
@@ -128,7 +129,13 @@ function getCurrentWeather(cityName) {
 
 
 
-        }).catch(error => console.log(error));
+        }).catch(error => {
+            console.log(error)
+            currentWeatherContainer.innerHTML = "";
+            pickedCity.textContent = "City Cannot be Found :(";
+            weatherIcon.setAttribute("src", "./assets/error.png")
+
+        });
 
 }
 
