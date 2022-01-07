@@ -9,7 +9,8 @@ const searchedCities = document.getElementById("searchedCities");
 const currentWeatherContainer = document.getElementById("cityCondition");
 const pickedCity = document.getElementById("pickedCity");
 const weatherIcon = document.getElementById("weatherIcon");
-const forecastContainer = document.getElementById("forecastContainer")
+const forecastContainer = document.getElementById("forecastContainer");
+const fiveDayFieldset = document.getElementById("fiveDayFieldset");
 
 const today = document.getElementById("today");
 var now = moment();
@@ -27,6 +28,7 @@ console.log("lastSearchedCity", lastSearchedCity);
 
 displayRecentSearches();
 getCurrentWeather(lastSearchedCity);
+
 
 
 
@@ -85,6 +87,7 @@ function displayRecentSearches() {
 
 
 function getCurrentWeather(cityName) {
+    fiveDayFieldset.style.display = "block";
     console.log(cityName);
     let searchUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`;
 
@@ -132,6 +135,7 @@ function getCurrentWeather(cityName) {
         }).catch(error => {
             console.log(error)
             currentWeatherContainer.innerHTML = "";
+            fiveDayFieldset.style.display = "none";
             pickedCity.textContent = "City Cannot be Found :(";
             weatherIcon.setAttribute("src", "./assets/error.png")
 
