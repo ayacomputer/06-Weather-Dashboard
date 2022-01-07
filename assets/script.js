@@ -156,7 +156,7 @@ function getFiveWeather(lat, lon) {
             forecastContainer.innerHTML = "";
             getCurrentUV(data);
 
-            for (let i = 0; i < 5; i++) {
+            for (let i = 1; i < 6; i++) {
                 let divEl = document.createElement("div");
                 divEl.setAttribute("display", "flex");
                 divEl.setAttribute("flex-direction", "column");

@@ -62,7 +62,7 @@ body {
    }
 
   .textInput {
-    margin-top: 1rem;
+    margin: 1rem auto 0 auto;
     background-color: var(--darkColor);
     color:var(--lightColor);
     font-family: inherit;
@@ -199,3 +199,52 @@ span {
    text-decoration: none;
     color: var(--lightColor);
   }
+
+
+  @media screen and (max-width:1000px) {
+
+   body {
+     font-size: 1.5rem;
+   }
+
+   .textInput {
+    margin: 0 auto;
+    padding: 1rem 0;
+    text-align: center;
+
+  }
+         
+}
+
+
+@media screen and (max-width:480px) {
+  html {
+    min-width: 480px;
+  }
+    body {
+       
+        width: 100%;
+        font-size:1.5rem;
+    }
+
+    main {
+      width: 100%;
+      flex-direction: column;
+  }
+   .left {
+   
+     width:100%;
+     margin: 0;
+     justify-content: center;
+   }
+   .right {
+     margin: 0;
+     justify-content: center;
+     overflow: scroll;
+   }
+
+   #cityInfo {
+     width: 111%;
+   }
+         
+}
