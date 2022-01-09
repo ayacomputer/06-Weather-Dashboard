@@ -8,7 +8,7 @@ This is a weather dashboard with form inputs.
 
 - When the user searches for a city, 
  current and future conditions for that city will be presented,
- and that city will be added to the search history.
+ and that city will be added to the search history. (default: Tokyo)
 
 - When the user views current weather conditions for that city,
  the city name, the date, an icon representation of weather conditions, 
