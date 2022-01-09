@@ -20,7 +20,7 @@ This is a weather dashboard with form inputs.
 
   The UV radiation levels are divided into: 
 
-  * 🟩 Low (less than 3)
+  * 🟩 Low (0-2)
   * 🟨 Moderate(3-5)
   * 🟧 High (6-7)
   * 🟥 Very high (8-10)
