@@ -3,7 +3,7 @@ This is a weather dashboard that will run in the browser and feature dynamically
 With this application, the user can see the weather outlook for multiple cities so that they can plan a trip accordingly.
 
 
-## Instruction
+## Instructions
 This is a weather dashboard with form inputs.
 
 - When the user searches for a city, 
@@ -16,7 +16,7 @@ This is a weather dashboard with form inputs.
  and the UV index will be presented.
 
 - When the user views the UV index,
- a color that indicates whether the conditions are low, moderate, high,very high or extreme will be presented.
+ a colour that indicates whether the conditions are low, moderate, high,very high or extreme will be presented.
 
   The UV radiation levels are divided into: 
 
@@ -26,7 +26,7 @@ This is a weather dashboard with form inputs.
   * 🟥 Very high (8-10)
   * 🟪 Extreme (11 and above)
 
-     (Reference: [Cancer Council Australia](https://www.cancer.org.au/cancer-information/causes-and-prevention/sun-safety/uv-index))
+     (Source: [Cancer Council Australia](https://www.cancer.org.au/cancer-information/causes-and-prevention/sun-safety/uv-index))
 
 - When the user views future weather conditions for that city,
  a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity will be presented.
